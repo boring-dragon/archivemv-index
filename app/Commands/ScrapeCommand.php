@@ -4,31 +4,32 @@ namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
-
-class InspiringCommand extends Command
+use App\Feed;
+class ScrapeCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'inspiring {name=Artisan}';
+    protected $signature = 'scrape';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Display an inspiring quote';
+    protected $description = 'The the scrape process of archive mv';
 
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(Feed)
     {
-        $this->info('Simplicity is the ultimate sophistication.');
+        
+       dd($feeds);
     }
 
     /**
