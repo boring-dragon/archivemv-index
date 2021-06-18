@@ -1,5 +1,5 @@
 <?php
-namespace App;.
+namespace App;
 
 use Goutte\Client;
 
@@ -30,5 +30,25 @@ class Feed
         });   
 
         return $feeds;  
+	}
+
+	public function scrapeArticle(string $link)
+	{
+		$crawler = $this->client->request('GET', $link);
+
+		return [
+			"guid" => basename($link),
+			"title" => $crawler->filter('.article-title')->first()->text(),
+			"link" => $link,
+			"original_link" => $crawler->filter('.ext-link')->first()->attr('href'),
+			"source" => [
+				"name" => $crawler->filter('.media-left a')->first()->attr('title'),
+				"image" => $crawler->filter('.media-left a img')->first()->attr('src')
+			],
+			"featured_image" => $crawler->filter('.photo a')->first()->attr('href'),
+			"meta" => $crawler->filter('.meta-author')->first()->text(),
+			"content" => $crawler->filter('.article-content')->first()->html()
+
+		];
 	}
 }
