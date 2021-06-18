@@ -33,6 +33,7 @@ class ScrapeCommand extends Command
 
         foreach($feedArticles as $article) {
              $feed->scrapeArticle($article['link']);
+         }
 
     }
 
