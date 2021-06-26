@@ -2,9 +2,9 @@
 
 namespace App\Commands;
 
+use App\Feed;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
-use App\Feed;
 
 class ScrapeCommand extends Command
 {
@@ -31,16 +31,16 @@ class ScrapeCommand extends Command
     {
         $feedArticles = $feed->scrape();
 
-        foreach($feedArticles as $article) {
-             $feed->scrapeArticle($article['link']);
-         }
-
+        foreach ($feedArticles as $article) {
+            $feed->scrapeArticle($article['link']);
+        }
     }
 
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     public function schedule(Schedule $schedule)
